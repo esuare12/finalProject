@@ -1,0 +1,342 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,400i,700");
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root{
+  --black: #122c34;
+  --dark-blue: #224870;
+  --light-blue: #4EA5D9 ;
+  --font: "Inconsolata", mono;
+}
+
+body{
+  margin: 0 auto;
+  width: 1280px;
+  box-sizing: border-box;
+  background-image: url(https://cdn.wallpapersafari.com/39/63/C1sxUc.jpg);
+}
+
+header, main, footer{
+  background-color: var(--light-blue);
+}
+
+header{
+  justify-content: center;
+  padding-bottom: 7px;
+  font-family: var(--font)
+  
+}
+
+.skip-content{
+  background-color: var(--light-blue);
+  color: #fff;
+  font-weight: 700;
+  left: 50%;
+  padding: 12px;
+  position: absolute;
+  text-decoration: none;
+  transform: translateY(-100%);
+}
+
+.skip-content:focus{
+  transform: translateY(0%);
+}
+
+h1{
+  font-size: 75px;
+  /* border: solid 10px var(--black);
+  border-radius: 20px; */
+  padding: 5px;
+  margin: 5px auto;
+  width: 540px;
+}
+
+.header nav{
+  justify-self: center;
+  padding: 20px;
+  font-size: 15px;
+}
+
+nav ul, footer ul{
+  display: flex;
+  list-style-type: none;
+  gap: 1.5rem;
+}
+
+nav a{
+  text-decoration: none;
+  color: var(--black);
+  font-size: 20px;
+  margin-bottom: 3px;
+  padding: 5px;
+}
+
+nav a:hover{
+  border: 3px solid var(--light-blue);
+  font-size: 18px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+nav a.active{
+     border: 3px solid var(--light-blue);
+     font-size: 18px;
+}
+
+main{
+  padding-top: 20px;
+  padding-bottom: 30px;
+  justify-items: center;
+}
+section{
+  margin: 20px 0;
+}
+
+#welcome{
+  width: 800px;
+  color: var(--black);
+  line-height: 1.3;
+}
+
+#welcome p{
+  text-align: center; 
+  padding: 20px 0;
+  font-size: 1.17em;
+  font-family: var(--font);
+}
+
+h2{
+  font-weight: bold;
+  font-size: 40px;
+  color: var(--black);
+  padding: 10px;
+  text-align: center;
+}
+
+#catalog{
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    width: 60vw;
+    height: 600px;
+    padding: 20px;
+    gap: 4vw;
+    anchor-name: --my-carousel;
+    scroll-marker-group: after;
+}
+
+#catalog div{
+    scroll-snap-align: center;
+}
+
+#catalog::scroll-button(*){
+    border: 0;
+    font-size: 2rem;
+    background: none;
+    color: black;
+    opacity: 0.7;
+    cursor: pointer;
+    position: absolute;
+    position-anchor: --my-carousel;
+}
+
+#catalog::scroll-button(*):hover,
+#catalog::scroll-button(*):focus {
+  opacity: 1;
+}
+
+#catalog::scroll-button(*):active {
+  translate: 1px 1px;
+}
+
+#catalog::scroll-button(*):disabled {
+  opacity: 0.2;
+  cursor: unset;
+}
+
+#catalog::scroll-button(left) {
+  content: "◄" / "Previous";
+  right: calc(anchor(left) - 65px);
+  bottom: calc(anchor(top)  + 8px);
+}
+
+#catalog::scroll-button(right) {
+  content: "►" / "Next";
+  left: calc(anchor(right) - 65px);
+  bottom: calc(anchor(top) + 8px);
+}
+
+#catalog::scroll-marker-group{
+  position: absolute;
+  position-anchor: --my-carousel;
+  top: calc(anchor(bottom) - 120px);
+  justify-self: anchor-center;
+  
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.anime-container::scroll-marker{
+  content: attr(data-accName);
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+  text-indent: 16px;
+}
+
+.anime-container::scroll-marker:target-current{
+  background-color: black;
+}
+
+.anime-container{
+  display: flex;
+  width: 400px;
+  height: 450px;
+  border: 5px solid var(--black);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 10px auto;
+  flex: 0 0 100%;
+  align-items: center;
+}
+
+.anime-image{
+  flex: 1;
+  
+}
+
+.anime-image img{
+    width: 70%;
+    height: 90%;
+    border-radius: 10px;
+    margin: 0 40px;
+}
+
+.description{
+  flex: 1;
+  align-content: center;
+}
+
+.description h3{
+  font-size: 65px;
+  color: var(--red);
+  font-weight: 300;
+  padding: 5px;
+}
+
+.description p{
+  font-size: 25px;
+  color: var(--red);
+  line-height: 1.3;
+}
+
+.description p, .description h3{
+  font-family: var(--font);
+  padding: 20px;
+}
+
+#contact{
+  width: 600px;
+  height: 550px;
+  border: 5px solid var(--black);
+  border-radius: 20px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 20px auto;
+}
+
+label, input{
+  padding: 7px 0;
+}
+
+label{
+  font-size: 1.15em;
+  font-family: var(--font);
+}
+
+textarea{
+  height: 100px;
+}
+
+legend{
+  padding: 0px 5px;
+  font-family: var(--font);
+  font-size: 1.17em;
+}
+
+fieldset{
+  padding: 20px 10px;
+  margin: 20px 0;
+  border: 4px solid var(--black);
+  border-radius: 10px;
+}
+
+fieldset input, fieldset label{
+  padding: 0 7px;
+}
+
+footer{
+  height: 200px;
+  align-content: center;
+  padding: 20px;
+}
+
+
+footer a, footer b{
+  text-decoration: none;
+  color: var(--black);
+  font-size: 1em;
+  font-family: var(--font);
+  padding: 10px 0;
+}
